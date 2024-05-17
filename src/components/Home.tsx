@@ -1,5 +1,6 @@
 import { Grid, GridItem } from "@chakra-ui/react";
 import LeftSideBar from "./LeftSideBar";
+import Feed from "./Feed";
 
 const Home = () => {
     return (
@@ -8,8 +9,11 @@ const Home = () => {
             <GridItem colSpan={2}>
                 <LeftSideBar />
             </GridItem>
-            <GridItem></GridItem>
-            <GridItem></GridItem>
+            <GridItem colSpan={5}>
+                <Feed/>
+            </GridItem>
+            <GridItem>
+            </GridItem>
             <GridItem></GridItem>
         </Grid>
     )
