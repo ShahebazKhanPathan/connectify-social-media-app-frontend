@@ -2,6 +2,7 @@ import { Box, HStack, Heading, VStack, Text, Avatar, Grid, GridItem } from "@cha
 import { AiFillHome } from "react-icons/ai";
 import { FaBell, FaEnvelope, FaUserCircle  } from "react-icons/fa";
 import { BsFillPeopleFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const LeftSideBar = () => {
     return (
@@ -9,14 +10,18 @@ const LeftSideBar = () => {
             <Box>
                 <Heading color="#D69E2E">Connectify</Heading>
             </Box>
+            <Link to={"/"}>
                 <HStack fontSize={"xl"} spacing={4}>
-                <AiFillHome />
-                <Text>Home</Text>
-            </HStack>
-            <HStack fontSize={"xl"} spacing={4}>
-                <FaBell />
-                <Text>Notifications</Text>
-            </HStack>
+                    <AiFillHome />
+                    <Text>Home</Text>
+                </HStack>
+            </Link>
+            <Link to={"/notifications"}>
+                <HStack fontSize={"xl"} spacing={4}>
+                    <FaBell />
+                    <Text>Notifications</Text>
+                </HStack>
+            </Link>
             <HStack fontSize={"xl"} spacing={4}>
                 <FaEnvelope />
                 <Text>Messages</Text>

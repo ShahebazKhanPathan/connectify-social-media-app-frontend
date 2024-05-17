@@ -4,6 +4,7 @@ import App from './App.tsx'
 import { ChakraProvider } from '@chakra-ui/react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Feed from './components/Feed.tsx'
+import Notifications from './components/Notifications.tsx'
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Feed/>
+      },
+      {
+        path: "/notifications",
+        element: <Notifications/>
       }
     ]
   }
