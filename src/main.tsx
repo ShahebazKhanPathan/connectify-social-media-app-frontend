@@ -7,6 +7,7 @@ import Feed from './components/Feed.tsx'
 import Notifications from './components/Notifications.tsx'
 import Messages from './components/Messages.tsx'
 import Chat from './components/Chat.tsx'
+import Followers from './components/Followers.tsx'
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/notifications",
         element: <Notifications/>
+      },
+      {
+        path: "/followers",
+        element: <Followers/>
       }
     ]
   },
@@ -32,7 +37,6 @@ const router = createBrowserRouter([
         element: <Chat/>
       }
     ]
-    
   }
 ])
 
