@@ -22,10 +22,12 @@ const LeftSideBar = () => {
                     <Text>Notifications</Text>
                 </HStack>
             </Link>
-            <HStack fontSize={"xl"} spacing={4}>
-                <FaEnvelope />
-                <Text>Messages</Text>
-            </HStack>
+            <Link to={"/messages"}>
+                <HStack fontSize={"xl"} spacing={4}>
+                    <FaEnvelope />
+                    <Text>Messages</Text>
+                </HStack>
+            </Link>
             <HStack fontSize={"xl"} spacing={4}>
                 <BsFillPeopleFill />
                 <Text>Followers</Text>

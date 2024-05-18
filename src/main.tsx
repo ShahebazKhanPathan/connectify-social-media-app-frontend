@@ -5,6 +5,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Feed from './components/Feed.tsx'
 import Notifications from './components/Notifications.tsx'
+import Messages from './components/Messages.tsx'
+import Chat from './components/Chat.tsx'
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,17 @@ const router = createBrowserRouter([
         element: <Notifications/>
       }
     ]
+  },
+  {
+    path: "/messages",
+    element: <Messages />,
+    children: [
+      {
+        path: "/messages/",
+        element: <Chat/>
+      }
+    ]
+    
   }
 ])
 

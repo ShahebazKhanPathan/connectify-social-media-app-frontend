@@ -67,6 +67,25 @@ const Notifications = () => {
                     <Text color={"gray"}>2 hr</Text>                    
                 </GridItem>
             </Grid>
+            <Divider />
+            <Grid templateColumns="repeat(10, 1fr)" marginY={3} gap={3} paddingX={4}>
+                <GridItem colSpan={1}>
+                    <Avatar src="https://bit.ly/ryan-florence"/>
+                </GridItem>
+                <GridItem colSpan={8}>
+                    <HStack gap={1}>
+                        <Text as="b" fontSize="md">Ryan Florence</Text>
+                        <Text color="gray">posted:</Text>
+                    </HStack>
+                    <Text marginY={2}>
+                        Ten years ago, Modi announced a Bullet Train project connecting Mumbai and Ahmedabad by 2022.
+                        This was hailed as Modi's ultimate vision, and everyone blamed Congress for not bringing Bullet Trains to India...
+                    </Text>
+                </GridItem>
+                <GridItem>
+                    <Text color={"gray"}>2 hr</Text>                    
+                </GridItem>
+            </Grid>
         </Box>
     )
 }
