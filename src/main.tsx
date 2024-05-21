@@ -10,6 +10,7 @@ import Chat from './components/Chat.tsx'
 import Network from './components/Network.tsx'
 import Followers from './components/Followers.tsx'
 import Following from './components/Following.tsx'
+import Profile from './components/Profile.tsx'
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             element: <Following/>
           }
         ]
+      },
+      {
+        path: "/profile",
+        element: <Profile/>
       }
     ]
   },

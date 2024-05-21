@@ -34,10 +34,12 @@ const LeftSideBar = () => {
                     <Text>Network</Text>
                 </HStack>
             </Link>
-            <HStack fontSize={"xl"} spacing={4}>
-                <FaUserCircle />
-                <Text>Profile</Text>
-            </HStack>
+            <Link to={"/profile"}>
+                <HStack fontSize={"xl"} spacing={4}>
+                    <FaUserCircle />
+                    <Text>Profile</Text>
+                </HStack>
+            </Link>
             <Grid templateColumns="repeat(3, 1fr)" gap={2} marginTop={6}>
                 <GridItem>
                     <Avatar src="https://bit.ly/dan-abramov" />
