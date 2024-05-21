@@ -1,27 +1,19 @@
-import { Box, Divider, Grid, GridItem, Tab, TabList, Tabs, Text } from "@chakra-ui/react"
-import { Outlet } from "react-router-dom";
+import { Box, Divider, Grid, GridItem, Text } from "@chakra-ui/react"
+import { Link, Outlet } from "react-router-dom";
 
 const Network = () => {
     return (
         <Box border="1px solid #EDF2F7">
-            <Grid templateColumns="repeat(10, 1fr)" marginY={2} gap={4} paddingX={4}>
-                <GridItem colSpan={5}>
-                    <Tabs variant="unstyled">
-                        <TabList>
-                            <Tab>
-                                <Text fontSize={"xl"} as={"b"}>Followers</Text>
-                            </Tab>
-                        </TabList>
-                    </Tabs>
+            <Grid templateColumns="repeat(10, 1fr)" marginY={4} gap={4} paddingX={4}>
+                <GridItem colSpan={5} textAlign={"center"}>
+                    <Link to={"/network/followers"}>
+                        <Text fontSize={"xl"} as={"b"}>Followers</Text>
+                    </Link>
                 </GridItem>
-                <GridItem colSpan={5}>
-                    <Tabs variant="enstyled">
-                        <TabList>
-                            <Tab>
-                                <Text fontSize={"xl"} as={"b"}>Following</Text>
-                            </Tab>
-                        </TabList>
-                    </Tabs>
+                <GridItem colSpan={5} textAlign={"center"}>
+                    <Link to={"/network/following"}>
+                        <Text fontSize={"xl"} as={"b"}>Following</Text>
+                    </Link>
                 </GridItem>
             </Grid>
             <Divider />

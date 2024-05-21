@@ -8,6 +8,8 @@ import Notifications from './components/Notifications.tsx'
 import Messages from './components/Messages.tsx'
 import Chat from './components/Chat.tsx'
 import Network from './components/Network.tsx'
+import Followers from './components/Followers.tsx'
+import Following from './components/Following.tsx'
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,16 @@ const router = createBrowserRouter([
       {
         path: "/network",
         element: <Network />,
+        children: [
+          {
+            path: "/network/followers",
+            element: <Followers/>
+          },
+          {
+            path: "/network/following",
+            element: <Following/>
+          }
+        ]
       }
     ]
   },

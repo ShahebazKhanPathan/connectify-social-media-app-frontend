@@ -28,7 +28,7 @@ const LeftSideBar = () => {
                     <Text>Messages</Text>
                 </HStack>
             </Link>
-            <Link to={"/network"}>
+            <Link to={"/network/followers"}>
                 <HStack fontSize={"xl"} spacing={4}>
                     <BsFillPeopleFill />
                     <Text>Network</Text>
