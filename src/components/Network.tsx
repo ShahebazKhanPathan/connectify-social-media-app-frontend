@@ -1,6 +1,7 @@
 import { Box, Divider, Grid, GridItem, Tab, TabList, Tabs, Text } from "@chakra-ui/react"
+import { Outlet } from "react-router-dom";
 
-const Followers = () => {
+const Network = () => {
     return (
         <Box border="1px solid #EDF2F7">
             <Grid templateColumns="repeat(10, 1fr)" marginY={2} gap={4} paddingX={4}>
@@ -23,9 +24,10 @@ const Followers = () => {
                     </Tabs>
                 </GridItem>
             </Grid>
-            <Divider/>
+            <Divider />
+            <Outlet/>
         </Box>
     )
 }
 
-export default Followers;
+export default Network;
