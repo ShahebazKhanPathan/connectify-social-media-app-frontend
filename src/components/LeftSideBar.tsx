@@ -42,7 +42,9 @@ const LeftSideBar = () => {
             </Link>
             <Grid templateColumns="repeat(3, 1fr)" gap={2} marginTop={6}>
                 <GridItem>
-                    <Avatar src="https://bit.ly/dan-abramov" />
+                    <Link to={"/profile"}>
+                        <Avatar src="https://bit.ly/dan-abramov" />
+                    </Link>
                 </GridItem>
                 <GridItem colSpan={2}>
                     <Text as="b">Shahebaz Khan</Text>

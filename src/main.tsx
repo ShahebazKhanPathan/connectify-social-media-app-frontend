@@ -11,6 +11,7 @@ import Network from './components/Network.tsx'
 import Followers from './components/Followers.tsx'
 import Following from './components/Following.tsx'
 import Profile from './components/Profile.tsx'
+import SignInSignUp from './components/SignInSignUp.tsx'
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
         element: <Chat/>
       }
     ]
+  },
+  {
+    path: "/signup",
+    element: <SignInSignUp/>
   }
 ])
 
