@@ -12,6 +12,7 @@ import Followers from './components/Followers.tsx'
 import Following from './components/Following.tsx'
 import Profile from './components/Profile.tsx'
 import SignInSignUp from './components/SignInSignUp.tsx'
+import Post from './components/Post.tsx'
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile/>
+      },
+      {
+        path: "/post",
+        element: <Post/>
       }
     ]
   },
