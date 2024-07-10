@@ -1,6 +1,7 @@
 import { Alert, AlertIcon, Box, Button, Grid, GridItem, Heading, Input, Text } from "@chakra-ui/react"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import apiClient from "../services/apiClient";
 
 interface User{
     name: string,
@@ -13,18 +14,37 @@ interface User{
 const SignInSignUp = () => {
     
     const { register, handleSubmit, formState: { errors } } = useForm<User>();
-    const [ signUpAlert, setSignUpAlert ] = useState(false);
+    const [signUpSuccess, setSignUpSuccess] = useState(false);
+    const [signUpError, setSignUpError] = useState(false);
+    const [ error, setError ] = useState('');
     const [ loader, setLoader ] = useState(false);
 
     const onSubmit = (data: User) => {
         setLoader(true);
+        const { name, email, mobile, password, confirmPassword } = data;
 
-        // api call
-        setTimeout(() => { 
-            setLoader(false);
-            setSignUpAlert(true);
-            console.log(data);
-        }, 2000);
+        if (password == confirmPassword) {
+            setSignUpSuccess(false);
+            setSignUpError(false);
+            apiClient.post("/api/user", {
+                name: name,
+                email: email,
+                mobile: mobile,
+                password: password
+            })
+                .then(() => {
+                    setLoader(false);
+                    setSignUpSuccess(true);
+                })
+                .catch(({ response: { data } }) => {
+                    setError(data);
+                    setSignUpError(true);
+                    setLoader(false);
+                });
+        }
+        else {
+            alert("Passwords do not match!");
+        }
     }
 
     return (
@@ -52,10 +72,16 @@ const SignInSignUp = () => {
                     <Grid templateColumns="repeat(10, 1fr)" paddingY={3}>
                         <GridItem></GridItem>
                         <GridItem colSpan={6}>
-                            {signUpAlert &&
+                            {signUpSuccess &&
                                 <Alert status="success" marginBottom={3}>
                                     <AlertIcon />
                                     This is an alert message!
+                                </Alert>
+                            }
+                            {signUpError &&
+                                <Alert status="error" marginBottom={3}>
+                                    <AlertIcon />
+                                    {error}
                                 </Alert>
                             }
                             <Heading fontSize={"4xl"} marginBottom={5}>Join today.</Heading>
