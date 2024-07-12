@@ -1,40 +1,44 @@
-import { Alert, AlertIcon, Box, Button, Grid, GridItem, Heading, Input, Text } from "@chakra-ui/react"
+import { Alert, AlertIcon, Box, Button, Grid, GridItem, Heading, HStack, Input, Text } from "@chakra-ui/react"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import apiClient from "../services/apiClient";
+import { Link } from "react-router-dom";
 
 interface User{
     name: string,
     email: string,
     mobile: number,
     password: string,
-    confirmPassword: string
+    confirmPassword: string,
 }
 
-const SignInSignUp = () => {
+const SignUp = () => {   
     
-    const { register, handleSubmit, formState: { errors } } = useForm<User>();
-    const [signUpSuccess, setSignUpSuccess] = useState(false);
-    const [signUpError, setSignUpError] = useState(false);
+    const { register, handleSubmit, formState: { errors }, reset } = useForm<User>();
+    const [ signUpSuccess, setSignUpSuccess ] = useState(false);
+    const [ signUpError, setSignUpError ] = useState(false);
     const [ error, setError ] = useState('');
     const [ loader, setLoader ] = useState(false);
 
-    const onSubmit = (data: User) => {
+    const onSubmit = async (data: User) => {
         setLoader(true);
         const { name, email, mobile, password, confirmPassword } = data;
 
         if (password == confirmPassword) {
             setSignUpSuccess(false);
             setSignUpError(false);
-            apiClient.post("/api/user", {
+
+            await apiClient.post("/api/user", {
                 name: name,
                 email: email,
                 mobile: mobile,
                 password: password
             })
-                .then(() => {
+                .then((res) => {
+                    localStorage.setItem("auth-token", res.data);
                     setLoader(false);
                     setSignUpSuccess(true);
+                    reset();
                 })
                 .catch(({ response: { data } }) => {
                     setError(data);
@@ -50,25 +54,9 @@ const SignInSignUp = () => {
     return (
         <Box padding={5}>
             <Grid templateColumns="repeat(12, 1fr)" gap={2}>
-                <GridItem></GridItem>
-                <GridItem colSpan={5}>
+                <GridItem colSpan={3}></GridItem>
+                <GridItem colSpan={6}>
                     <Heading fontSize={"7xl"} color="#D69E2E">Connectify</Heading>
-                    <Text fontSize={"xl"} marginY={5}>
-                        Stay connected with the world in real-time.
-                        Share your thoughts, follow trends, and engage with a vibrant community.
-                        Connectify brings you the best of social media, powered by cutting-edge technology for a seamless experience.</Text>
-                    <Grid templateColumns="repeat(10, 1fr)" paddingY={3}>
-                        <GridItem></GridItem>
-                        <GridItem colSpan={6}>
-                            <Text fontSize={"2xl"}>Sign In</Text>
-                            <Input marginY={4} focusBorderColor="#EDF2F7" backgroundColor="#EDF2F7" placeholder="Email/Mobile" borderRadius={20} />
-                            <Input marginBottom={4} focusBorderColor="#EDF2F7" backgroundColor="#EDF2F7" placeholder="Password" borderRadius={20} />
-                            <Button borderRadius={20} paddingX={5} color="white" backgroundColor="black">Sign In</Button>
-                        </GridItem>
-                        <GridItem></GridItem>
-                    </Grid>
-                </GridItem>
-                <GridItem colSpan={5}>
                     <Grid templateColumns="repeat(10, 1fr)" paddingY={3}>
                         <GridItem></GridItem>
                         <GridItem colSpan={6}>
@@ -143,6 +131,7 @@ const SignInSignUp = () => {
                                             minLength: { value: 8, message: "Password must be atleast 8 characters long."}
                                         })
                                     }
+                                    type="password"
                                     marginTop={4}
                                     focusBorderColor="#EDF2F7"
                                     backgroundColor="#EDF2F7"
@@ -159,6 +148,7 @@ const SignInSignUp = () => {
                                             minLength: { value: 8, message: "Confirm must be atleast 8 characters long."}
                                         })
                                     }
+                                    type="password"
                                     marginTop={4}
                                     focusBorderColor="#EDF2F7"
                                     backgroundColor="#EDF2F7"
@@ -179,14 +169,18 @@ const SignInSignUp = () => {
                                     Create account
                                 </Button>
                             </form>
+                            <HStack marginTop={5} fontSize={"lg"}>
+                                <Text>Already user?</Text>
+                                <Link to={"/signin"}>Login here.</Link>
+                            </HStack>
                         </GridItem>
                         <GridItem></GridItem>
                     </Grid>
                 </GridItem>
-                <GridItem></GridItem>
+                <GridItem colSpan={3}></GridItem>
             </Grid>
         </Box>
     )
 }
 
-export default SignInSignUp;
+export default SignUp;

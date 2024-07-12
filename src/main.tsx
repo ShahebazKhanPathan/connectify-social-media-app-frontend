@@ -11,8 +11,9 @@ import Network from './components/Network.tsx'
 import Followers from './components/Followers.tsx'
 import Following from './components/Following.tsx'
 import Profile from './components/Profile.tsx'
-import SignInSignUp from './components/SignInSignUp.tsx'
 import Post from './components/Post.tsx'
+import SignIn from './components/SignIn.tsx'
+import SignUp from './components/SignUp.tsx'
 
 const router = createBrowserRouter([
   {
@@ -62,8 +63,12 @@ const router = createBrowserRouter([
     ]
   },
   {
+    path: "/signin",
+    element: <SignIn/>
+  },
+  {
     path: "/signup",
-    element: <SignInSignUp/>
+    element: <SignUp/>
   }
 ])
 

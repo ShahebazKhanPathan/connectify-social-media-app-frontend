@@ -1,10 +1,14 @@
-import { Box, HStack, Heading, VStack, Text, Avatar, Grid, GridItem } from "@chakra-ui/react";
+import { Box, HStack, Heading, VStack, Text, Avatar, Grid, GridItem, Button } from "@chakra-ui/react";
 import { AiFillHome } from "react-icons/ai";
-import { FaBell, FaEnvelope, FaUserCircle  } from "react-icons/fa";
+import { FaBell, FaEnvelope, FaUserCircle, FaSignOutAlt  } from "react-icons/fa";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-const LeftSideBar = () => {
+interface Props{
+    onLogOut: () => void
+}
+
+const LeftSideBar = ({ onLogOut }: Props) => {
     return (
         <VStack spacing={5} align="start">
             <Box>
@@ -40,7 +44,16 @@ const LeftSideBar = () => {
                     <Text>Profile</Text>
                 </HStack>
             </Link>
-            <Grid templateColumns="repeat(3, 1fr)" gap={2} marginTop={6}>
+            <HStack fontSize={"xl"} spacing={4}>
+                <Button
+                    paddingX={2}
+                    leftIcon={<FaSignOutAlt />}
+                    variant={"ghost"}
+                    size={"lg"}
+                    onClick={() => onLogOut}>Logout
+                </Button>
+            </HStack>
+            <Grid templateColumns="repeat(3, 1fr)" gap={2} marginTop={3}>
                 <GridItem>
                     <Link to={"/profile"}>
                         <Avatar src="https://bit.ly/dan-abramov" />
