@@ -28,7 +28,7 @@ const SignUp = () => {
             setSignUpSuccess(false);
             setSignUpError(false);
 
-            await apiClient.post("/api/user", {
+            await apiClient.post("/api/user/signup", {
                 name: name,
                 email: email,
                 mobile: mobile,
@@ -48,6 +48,7 @@ const SignUp = () => {
         }
         else {
             alert("Passwords do not match!");
+            setLoader(false);
         }
     }
 

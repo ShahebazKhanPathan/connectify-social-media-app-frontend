@@ -5,7 +5,7 @@ import apiClient from "../services/apiClient";
 import { Link } from "react-router-dom";
 
 interface User{
-    id: string | number,
+    id: string,
     password: string
 }
 
@@ -21,7 +21,7 @@ const SignIn = () => {
         setErrorAlert("");
         const { id, password } = data;
 
-        await apiClient.get("/api/user", { data: { id: id, password: password }})
+        await apiClient.post("/api/user/signin", { id: id, password: password })
             .then((res) => {
                 localStorage.setItem("auth-token", res.data);
                 setLoader(false);
@@ -75,6 +75,7 @@ const SignIn = () => {
                                             required: "Password is required."
                                         }
                                     )}
+                                    type="password"
                                     marginTop={4}
                                     focusBorderColor="#EDF2F7"
                                     backgroundColor="#EDF2F7"
