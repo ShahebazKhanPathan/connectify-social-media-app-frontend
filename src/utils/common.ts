@@ -1,15 +1,24 @@
 import apiClient from "../services/apiClient";
 
-// Logout
-const logOut = async (token: string | null) => {
-    return await apiClient.delete("/api/blacklist", { data: { token: token } });
+// API for logging out
+const logOut = async () => {
+    return await apiClient.delete("/api/blacklist", { data: { token: localStorage.getItem("auth-token") } });
 }
 
-// Check token expiry
-const checkTokenExpiry = async (token: string | null) => {
-    if (token) {
-        return await apiClient.get("/api/blacklist", { headers: { "auth-token": localStorage.getItem("auth-token") } });
-    }
+const signOut = async () => {
+  await logOut().then(() => {
+      location.href = "/";
+  });
+}
+
+// API to check token expiry
+const checkTokenExpiry = async () => {
+    return apiClient.get("/api/blacklist", { headers: { "auth-token": localStorage.getItem("auth-token") } })
+        .then(() => { return false }).catch(() => { return true });
 };
 
-export { logOut, checkTokenExpiry };
+const expiry = async () => {
+  return await checkTokenExpiry();
+}
+
+export { expiry, signOut };
